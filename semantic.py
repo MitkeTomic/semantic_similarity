@@ -2,9 +2,9 @@ import spacy
 
 nlp = spacy.load("en_core_web_sm")
 
-word1 = nlp("dog")
-word2 = nlp("bone")
-word3 = nlp("bear")
+word1 = nlp("cat")
+word2 = nlp("monkey")
+word3 = nlp("banana")
 
 print(f"Similarity between {word1} and {word2} = {word1.similarity(word2)}")
 print(f"Similarity between {word3} and {word2} = {word3.similarity(word2)}")
@@ -51,30 +51,19 @@ for sentence in sentences:
     # Similarity between bear and bone = 0.12584526101060983
     # Similarity between bear and dog = 0.2940996130324144
 
-# Similarity between dog and bone = 0.25421421644290154
-# Similarity between bear and bone = 0.12584526101060983
-# Similarity between bear and dog = 0.2940996130324144
-# ======================||=================================
-# ('cat', 'cat', 1.0)
-# ('cat', 'apple', 0.20368057489395142)
-# ('cat', 'monkey', 0.5929930210113525)
-# ('cat', 'banana', 0.2235882729291916)
-# ('apple', 'cat', 0.20368057489395142)
-# ('apple', 'apple', 1.0)
-# ('apple', 'monkey', 0.2342509925365448)
-# ('apple', 'banana', 0.6646700501441956)
-# ('monkey', 'cat', 0.5929930210113525)
-# ('monkey', 'apple', 0.2342509925365448)
-# ('monkey', 'monkey', 1.0)
-# ('monkey', 'banana', 0.4041501581668854)
-# ('banana', 'cat', 0.2235882729291916)
-# ('banana', 'apple', 0.6646700501441956)
-# ('banana', 'monkey', 0.4041501581668854)
-# ('banana', 'banana', 1.0)
-# ======================||=================================
-# We are comparing "Why is my cat on the car" to other sentences in the list
-# Where did my dog go -  0.6085941922436378
-# Hello there is my car -  0.8259162920501877
-# I've lost my car in my car -  0.6787540461994952
-# I'd like my boat back -  0.562494104588661
-# I will name my dog Diana -  0.6491444739190607
+
+# difference between "en_core_web_sm" and en_core_web_md:
+    # When you calculate the similarity between two pieces of text, 
+    # the similarity method uses the word vectors to compare the meaning and context of each word in the texts. 
+    # However, if the model you're using doesn't have word vectors, it will instead use the tagger, parser, and NER to judge similarity. 
+    # These features capture some aspects of meaning and context, but they're less sophisticated than word vectors, so the similarity score may not be as accurate.
+# I ve noticed in case of my words dog, bone and bear corellation was better: 
+    # Similarity between dog and bone = 0.7336330071317306
+    # Similarity between bear and bone = 0.4585049476135905
+    # Similarity between bear and dog = 0.5030567204041406
+# In case with comparing sentences the result are following.The results are not consistent this model was not supposed to be used to compare similarity between bigger data sets.
+    # Where did my dog go -  0.4313613354785292
+    # Hello there is my car -  0.5985130180792348
+    # I've lost my car in my car -  0.5480285305981948
+    # I'd like my boat back -  0.3007498749175949
+    # I will name my dog Diana -  0.3904074922670841      
